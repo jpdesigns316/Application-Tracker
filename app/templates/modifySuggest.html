@@ -1,0 +1,44 @@
+{% extends 'index.html' %} {% block content %}
+
+<div class="container apps">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 panel education">
+      <form method="post" class="form-horizontal" action="#">
+        <div class="inner">
+          <div>
+            <fieldset class="form-group">
+              <label for="">Position</label>
+              <input type="text" class="form-control" name="position" {% if type=='edit' %} value="{{suggest.position}}" {% endif %}>
+            </fieldset>
+          </div>
+          <div>
+            <fieldset class="form-group">
+              <label for="">Location: </label>
+              <input type="test" class="form-control" name="location" {% if type=='edit' %} value="{{suggest.location}}" {% endif %}>
+          </div>
+          <div>
+            <fieldset class="form-group">
+              <label for="">Link to Application Page: </label>
+              <input type="test" class="form-control" name="url" {% if type=='edit' %} value="{{suggest.url}}" {% endif %}>
+          </div>
+          <div>
+            <fieldset class="form-group">
+              <label for="">Suggested By</label>
+              <input type="text" class="form-control" name="suggested_by" {% if type=='edit' %} value="{{suggest.suggested_by}}" {% endif %}>
+          </div>
+
+          <div>
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-6">
+              <input type="submit" class="btn btn-primary" value="Submit">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

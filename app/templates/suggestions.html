@@ -1,0 +1,28 @@
+{% extends 'index.html' %} {% block content %}
+
+<section class='apps'>
+  <table class='table'>
+    <thead class="thead-inverse">
+      <tr>
+        <th>Position</th>
+        <th>Location</th>
+        <th>URL</th>
+        <th>Suggested By</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for suggest in suggestions %}
+      <tr>
+        <td>{{ suggest.position}}</td>
+        <td>{{ suggest.location}}</td>
+        <td>{{ suggest.url}}</td>
+        <td>{{ suggest.suggested_by}}</td>
+
+      </tr>
+      {% endfor %}
+  </table>
+  {% if 'username' in session %}
+  <a href="{{url_for('suggest.add_suggest')}}" class="btn btn-warning actions">Add</a> {% endif%}
+
+</section>
+{% endblock %}

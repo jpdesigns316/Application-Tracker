@@ -1,0 +1,29 @@
+{% extends 'index.html' %} {% block content %}
+
+<section class='apps'>
+  <table class='table'>
+    <thead class="thead-inverse">
+      <tr>
+
+        <th>Company Name</th>
+        <th>Date</th>
+        <th>Position</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for app in applications %}
+      <tr>
+        <td>{{ app.company_name}}</td>
+        <td>{{ app.date_apply}}</td>
+        <td>{{ app.position}}</td>
+        <td><a href="{{url_for('app.more_info', app_id=app.id)}}" class="btn btn-primary actions">More Info</a> {% if 'username' in session %}
+          <a href="{{url_for('app.edit_app',id=app.id)}}" class="btn btn-warning actions">Edit</a> {% endif %}
+      </tr>
+      {% endfor %}
+  </table>
+  {% if 'username' in session %}
+  <a href="{{url_for('app.add_app')}}" class="btn btn-warning actions">Add</a> {% endif%}
+
+</section>
+{% endblock %}

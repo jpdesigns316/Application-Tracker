@@ -1,0 +1,25 @@
+{% extends 'index.html' %} {% block content %}
+<section class="app">
+  <div class="row">
+    <div class="col-md-4">
+      <p><strong>Company Name: </strong> {{app.company_name}}</p>
+      <p><strong>Location: </strong> {{app.location}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><strong>Position: </strong> {{app.position}}</p>
+      <p><strong>Contact: </strong> {{app.contact}}</p>
+    </div>
+    <div class="col-md-4">
+      <p><strong>Date of Application: </strong> {{app.date_apply}}</p>
+      <p><strong>Found on: </strong> {{app.job_board}}</p>
+    </div>
+    <div class="col-md-12">
+      <p><strong>Next Step: </strong> {{app.next_step}}</p>
+      <p><strong>Note: </strong> {{app.notes}}</p>
+    </div>
+  </div>
+  <a href="{{url_for('home')}}" class="btn btn-primary actions">Back</a> {% if 'username' in session %}
+  <a href="{{url_for('app.edit_app',id=app.id)}}" class="btn btn-warning actions">Edit</a> {% endif %}
+</section>
+
+{% endblock %}
