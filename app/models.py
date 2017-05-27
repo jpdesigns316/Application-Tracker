@@ -13,23 +13,28 @@ Base = declarative_base()
 
 
 class Application(Base):
-    __tablename__ = 'applicaitons'
+    __tablename__ = 'applications'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    company_name = Column(String, nullable=False)
-    date_apply = Column(Date, nullable=False)
-    position = Column(String, nullable=False)
-    location = Column(String, nullable=False)
-    next_step = Column(String, nullable=False)
-    contact = Column(String, nullable=False)
-    job_board = Column(String, nullable=False)
-    notes = Column(Text, nullable=False)
+    company_name = Column(String)
+    date_apply = Column(Date)
+    position = Column(String)
+    job_type = Column(String)
+    location = Column(String)
+    next_step = Column(String)
+    industry = Column(String)
+    contact = Column(String)
+    job_board = Column(String)
+    notes = Column(Text)
 
-    def __init__(self, company_name, date_apply, position, location, next_step, contact, job_board, notes):
+    def __init__(self, company_name, date_apply, position, job_type,
+                 location, industry, next_step, contact, job_board,
+                 notes):
         self.company_name = company_name
         self.date_apply = date_apply
         self.position = position
         self.location = location
+        self.industry = industry
         self.next_step = next_step
         self.contact = contact
         self.job_board = job_board
@@ -42,6 +47,7 @@ class Application(Base):
             'company_name': self.company_name,
             'date_apply': self.date_apply,
             'position': self.position,
+            'job_type': self.job_type,
             'locaiton': self.location,
             'next_step': self.next_step,
             'contatct': self.contact,

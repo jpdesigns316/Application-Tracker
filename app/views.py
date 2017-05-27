@@ -9,6 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from models import Base, Application, Suggestions
 from flask import session as login_session
 from controllers import *
+from forms import ApplicationForm
 
 
 apply_blueprint = Blueprint('app', __name__)
@@ -22,13 +23,16 @@ def home():
 
 @apply_blueprint.route('/add/application', methods=['GET', 'POST'])
 def add_app():
+    form = ApplicationForm()
     if request.method == 'POST':
         doa = map(int, request.form['date_apply'].split('-'))
         date_apply = datetime.date(doa[0], doa[1], doa[2])
         applcation = Application(company_name=request.form['company_name'],
                                  date_apply=date_apply,
                                  position=request.form['position'],
+                                 job_type=request.form['job_type'],
                                  location=request.form['location'],
+                                 industry=request.form['industry'],
                                  next_step=request.form['next_step'],
                                  contact=request.form['contact'],
                                  job_board=request.form['job_board'],
@@ -37,11 +41,13 @@ def add_app():
         session.commit()
         return redirect(url_for('app.home'))
     else:
-        return render_template('modifyApply.html', type='add')
+
+        return render_template('addApply.html', form=form)
 
 
 @apply_blueprint.route('/edit/application/<int:id>', methods=['POST', 'GET'])
 def edit_app(id):
+    form = ApplicationForm()
     app = session.query(Application).filter_by(id=id).one()
     if request.method == 'POST':
         doa = map(int, request.form['date_apply'].split('-'))
@@ -50,6 +56,7 @@ def edit_app(id):
         app.date_apply = date_apply
         app.position = request.form['position']
         app.location = request.form['location']
+        app.industry = request.form['industry']
         app.next_step = request.form['next_step']
         app.contact = request.form['contact']
         app.job_board = request.form['job_board']
@@ -58,9 +65,9 @@ def edit_app(id):
         session.commit()
         return redirect(url_for('app.home'))
     else:
-        return render_template('modifyapply.html',
+        return render_template('editApply.html',
                                app=app,
-                               type='edit')
+                               form=form)
 
 
 @apply_blueprint.route('/info/<int:app_id>')

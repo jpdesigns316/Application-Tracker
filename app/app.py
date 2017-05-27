@@ -6,7 +6,7 @@ from models import Base, Application, Suggestions
 from controllers import *
 from functools import wraps
 import os
-
+from forms import LoginForm
 import random
 import string
 
@@ -46,6 +46,7 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    form = LoginForm()
     error = None
     if request.method == 'POST':
         if (request.form['username'] != app.config['USERNAME']) \
@@ -55,7 +56,7 @@ def login():
             login_session['username'] = 'Admin'
             flash('You were logged in.')
             return redirect(url_for('home'))
-    return render_template('login.html', error=error)
+    return render_template('login.html', form=form)
 
 
 @app.route('/logout')

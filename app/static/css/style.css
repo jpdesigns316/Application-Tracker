@@ -2,11 +2,12 @@
 .apps {
   margin-top: 100px;
 }
+.app-forms {
+  margin-left: 5px;
+  margin-right: 5px;
 
-div {
-  border: 1px solid black;
 }
-.inner {
-  margin: 20px;
-  border: 1px solid black;
+
+.app-btn {
+  margin-bottom: 10px
 }

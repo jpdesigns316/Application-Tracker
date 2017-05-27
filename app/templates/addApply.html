@@ -1,0 +1,50 @@
+{% extends 'index.html' %} {% import 'macros.html' as macros %} {% block content %} {% if 'username' in session %}
+
+<div class="container apps">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 panel panel-default">
+      <legend>Add Applicaion</legend>
+      {% call macros.render_form(form, action_url=url_for('app.add_app'), action_text="Add Application", class_="form-horizontal") %}
+      <div class="col-md-6">
+        {{ macros.render_field(form.company_name, label_visible=true,placeholder="company name", type='text')}}
+      </div>
+      <div class="col-md-6">
+        {{ macros.render_field(form.date_apply, label_visible=true,placeholder="company name", type='date')}}
+      </div>
+      <div class="col-md-6">
+        {{ macros.render_field(form.position, label_visible=true, type='text')}}
+      </div>
+      <div class="col-md-6">
+        {{ macros.render_field(form.job_type, label_visible=true,type='text')}}
+      </div>
+      <div class="col-md-6">
+        {{ macros.render_field(form.location, label_visible=true, type='text')}}
+      </div>
+      <div class="col-md-6">
+        {{ macros.render_field(form.industry, label_visible=true,type='text')}}
+      </div>
+      <div class="col-md-6">
+        {{ macros.render_field(form.next_step, label_visible=true, type='text')}}
+      </div>
+      <div class="col-md-6">
+        {{ macros.render_field(form.contact, label_visible=true,type='text')}}
+      </div>
+      <div class="col-md-12">
+        {{ macros.render_field(form.job_board, label_visible=true, type='text')}}
+      </div>
+
+      <div class="col-md-12">
+        {{ macros.render_field(form.notes, label_visible=true, type='textarea')}}
+      </div>
+      {% endcall %}
+    </div>
+  </div>
+
+
+
+
+</div>{% else %}
+<h1>You be here. Your IP has been logged</h1> {% endif %}
+</div>
+
+{% endblock %}
