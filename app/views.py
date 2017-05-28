@@ -1,17 +1,14 @@
 from flask import Blueprint, Flask, render_template, request, redirect, \
     url_for, jsonify
 import datetime
+import os
 # Database model
-from functools import wraps
-from sqlalchemy import desc
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, Application, Suggestions
 from flask import session as login_session
 from controllers import *
-from forms import ApplicationForm
-
-
+from forms import ApplicationAddForm, ApplicationEditForm
 apply_blueprint = Blueprint('app', __name__)
 suggest_blueprint = Blueprint('suggest', __name__)
 
@@ -23,8 +20,9 @@ def home():
 
 @apply_blueprint.route('/add/application', methods=['GET', 'POST'])
 def add_app():
-    form = ApplicationForm()
+    form = ApplicationAddForm()
     if request.method == 'POST':
+
         doa = map(int, request.form['date_apply'].split('-'))
         date_apply = datetime.date(doa[0], doa[1], doa[2])
         applcation = Application(company_name=request.form['company_name'],
@@ -41,20 +39,20 @@ def add_app():
         session.commit()
         return redirect(url_for('app.home'))
     else:
-
         return render_template('addApply.html', form=form)
 
 
 @apply_blueprint.route('/edit/application/<int:id>', methods=['POST', 'GET'])
 def edit_app(id):
-    form = ApplicationForm()
-    app = session.query(Application).filter_by(id=id).one()
+    form = ApplicationEditForm()
+    app = get_application(id)
     if request.method == 'POST':
         doa = map(int, request.form['date_apply'].split('-'))
         date_apply = datetime.date(doa[0], doa[1], doa[2])
         app.company_name = request.form['company_name']
         app.date_apply = date_apply
         app.position = request.form['position']
+        app.job_type = request.form['job_type']
         app.location = request.form['location']
         app.industry = request.form['industry']
         app.next_step = request.form['next_step']
@@ -66,7 +64,7 @@ def edit_app(id):
         return redirect(url_for('app.home'))
     else:
         return render_template('editApply.html',
-                               app=app,
+                               apply=app,
                                form=form)
 
 

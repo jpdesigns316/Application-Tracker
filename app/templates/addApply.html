@@ -6,37 +6,40 @@
       <legend>Add Applicaion</legend>
       {% call macros.render_form(form, action_url=url_for('app.add_app'), action_text="Add Application", class_="form-horizontal") %}
       <div class="col-md-6">
-        {{ macros.render_field(form.company_name, label_visible=true,placeholder="company name", type='text')}}
+        {{ macros.input(form.company_name, type='text') }}
       </div>
       <div class="col-md-6">
-        {{ macros.render_field(form.date_apply, label_visible=true,placeholder="company name", type='date')}}
+        {{ macros.input(form.date_apply, type='date') }}
       </div>
       <div class="col-md-6">
-        {{ macros.render_field(form.position, label_visible=true, type='text')}}
+        {{ macros.input(form.position, type='select') }}
       </div>
       <div class="col-md-6">
-        {{ macros.render_field(form.job_type, label_visible=true,type='text')}}
+        {{ macros.job_type_select(form.job_type, value='', class='form-control', id='')  }}
       </div>
       <div class="col-md-6">
-        {{ macros.render_field(form.location, label_visible=true, type='text')}}
+        {{ macros.input(form.location, type='text') }}
       </div>
       <div class="col-md-6">
-        {{ macros.render_field(form.industry, label_visible=true,type='text')}}
+        {{ macros.input(form.industry, type='text') }}
       </div>
       <div class="col-md-6">
-        {{ macros.render_field(form.next_step, label_visible=true, type='text')}}
+        {{ macros.input(form.next_step, type='text') }}
       </div>
       <div class="col-md-6">
-        {{ macros.render_field(form.contact, label_visible=true,type='text')}}
+        {{ macros.input(form.contact, type='text') }}
       </div>
       <div class="col-md-12">
-        {{ macros.render_field(form.job_board, label_visible=true, type='text')}}
+        {{ macros.input(form.job_board, type='text') }}
       </div>
 
       <div class="col-md-12">
-        {{ macros.render_field(form.notes, label_visible=true, type='textarea')}}
+        {{ macros.render_textarea(form.notes)}}
       </div>
+      <div class="col-md-12 text-center">
       {% endcall %}
+      </div>
+
     </div>
   </div>
 

@@ -4,17 +4,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from models import Base, Application, Suggestions
 from controllers import *
-from functools import wraps
 import os
 from forms import LoginForm
-import random
-import string
 
-from oauth2client.client import flow_from_clientsecrets
-from oauth2client.client import FlowExchangeError
-import httplib2
-import json
-import requests
 from flask import session as login_session
 
 from views import *

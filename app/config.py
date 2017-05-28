@@ -12,6 +12,7 @@ SQLUSER = ''
 SQLPASSWORD = ''
 FILENAME = 'apply'
 
+
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 IP_ADDRESS = '0.0.0.0'
 PORT = 5000

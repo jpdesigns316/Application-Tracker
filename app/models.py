@@ -2,7 +2,7 @@ from flask import Flask
 from sqlalchemy import Column, ForeignKey, Integer, String, Text,  \
     UniqueConstraint, Date
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+
 from sqlalchemy import create_engine
 
 app = Flask(__name__)

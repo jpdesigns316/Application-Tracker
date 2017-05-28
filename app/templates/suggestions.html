@@ -7,16 +7,15 @@
       <tr>
         <th>Position</th>
         <th>Location</th>
-        <th>URL</th>
         <th>Suggested By</th>
       </tr>
     </thead>
     <tbody>
       {% for suggest in suggestions %}
       <tr>
-        <td>{{ suggest.position}}</td>
+        <td><a href="{{ suggest.url}}" target="_blank">{{ suggest.position}}</a></td>
         <td>{{ suggest.location}}</td>
-        <td>{{ suggest.url}}</td>
+
         <td>{{ suggest.suggested_by}}</td>
 
       </tr>

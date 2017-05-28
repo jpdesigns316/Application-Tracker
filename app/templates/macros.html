@@ -23,6 +23,12 @@
     </div>
 {%- endmacro %}
 
+{% macro input(field, value='', type='', id='') -%}
+    <label for="{{ field.id }}" class="control-label">{{ field.label }}</label>
+    <input class="form-control" id="{{ field.id }}", type="{{ type }}" name="{{ field.id }}" value="{{
+        value }}" size="{{ size }}">
+{%- endmacro %}
+
 {% macro render_checkbox_field(field) -%}
     <div class="checkbox">
         <label>
@@ -32,8 +38,9 @@
 {%- endmacro %}
 
 
-{% macro render_textarea(name, class='form-control', value='', rows='80') -%}
-    <textarea class="form-control" name="{{ name }}" >{{ value|e }}</textarea>
+{% macro render_textarea(field, class='form-control', value='', rows='80') -%}
+<label for="{{ field.id }}" class="control-label">{{ field.label }}</label>
+    <textarea class="form-control" id="{{ field.id }}"name="{{ field.id }}" >{{ value|e }}</textarea>
 {%- endmacro %}
 
 {% macro render_radio_field(field) -%}
@@ -65,4 +72,26 @@
         {% endif %}
         <button type="submit" class="{{ btn_class }}">{{ action_text }} </button>
     </form>
+{%- endmacro %}
+
+
+{% macro job_type_select(field, value='', class='', id='') -%}
+<label for="{{ field.id }}" class="control-label">{{ field.label }}</label>
+ {% set job_types = ["Full-Time", "Part-Time", "Internship", "Contract"] %}
+ <select name="{{field.id}}" class="{{class}}" id="{{id}}">
+ {% for job_type in job_types %}
+ <option value="{{job_type}}" {{'selected' if value==job_type else ''}}>{{job_type}}</option>
+ {% endfor %}
+ </select>
+{%- endmacro %}
+
+{% macro states_select(field, value='', class='', id='') -%}
+ {% set states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA",
+"ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
+"OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"] %}
+ <select name="{{location_state}}" class="{{class}}" id="{{id}}">
+ {% for state in states %}
+ <option value="{{state}}" {{'selected' if value==state else ''}}>{{state}}</option>
+ {% endfor %}
+ </select>
 {%- endmacro %}
