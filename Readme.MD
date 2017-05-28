@@ -9,7 +9,7 @@ Edit Application Screen:
 ![alt text](images/edit_app_screen.PNG "Edit Application Screen")
 
 List of Application Screen:
-![alt text](images/appliction_screen.PNG "Application Screen")
+![alt text](images/application_screen.PNG "Application Screen")
 
 
 ## Installation
