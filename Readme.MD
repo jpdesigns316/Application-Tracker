@@ -47,6 +47,7 @@ $ sudo apt-get install apache2 postgresql python-pip python-dev build-essential 
 ```
 
 Change directory to the www directory and clone the git repository:
+
 ```
 $ cd /var/www
 /var/www $ git clone https://github.com/jpdesigns316/Application-Tracker.git app-tracker
@@ -56,8 +57,8 @@ $ cd /var/www
 
 
 Edit the Apache2 configuration file using nano, or the chosen editor of choice.
- ````
- /var/www/app-tracke $ sudo nano app-tracker.conf
+ ```
+ /var/www/app-tracker $ sudo nano app-tracker.conf
  ```
 
 Modify IP_ADDRESS with the IP address from the EC2 console;
