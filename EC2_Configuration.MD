@@ -29,12 +29,12 @@ Type Yes to create a fingerprint
 
 Since this is the first time connecting, you will need to update the server:
 ```
-$ sudo apt-get upgrade | y && sudo apt-get upgrade | y
+$ sudo apt-get update -y && sudo apt-get upgrade -y
 ```
 You will then need to start to get the necessary packages need to run the Python application:
 
 ```
-$ sudo apt-get install apache2 postgresql python-pip python-dev build-essential git-all ntp python-psycopg2 libpq-dev libapache2-mod-wsgi python-virtualenv unattended-upgrades npm
+$ sudo apt-get install apache2 postgresql python-pip python-dev build-essential git-all ntp python-psycopg2 libpq-dev libapache2-mod-wsgi python-virtualenv unattended-upgrades npm -y
 ```
 
 Change directory to the www directory and clone the git repository:
@@ -69,18 +69,13 @@ $ sudo su PostgreSQL
 ```
 After you are logged in, you will need to set up the tracker, and create the database.
 ```
-createuser -interactive
+createuser --interactive
 ```
 Create the usernanme tracker, N to super user, Y to create database, N to create roles
 
-Create the database
+To create the database type:
 ```
-$ psql
-```
-Run these commands:
-```
-CREATE DATABASE apply OWNER tracker;
-ALTER ROLE tracker WITH PASSWORD [choose what password you want];
+$ createdb -O tracker -W apply
 ```
 
 Type CTRL-D twice to exit PostgreSQL console, then logout of Postgres account.
@@ -95,7 +90,9 @@ After making these modifications you should be ready for the final two steps.
 Install the python modules without using the virtual environment. It is not needed
 since this setup is minimal, and the server is only being used for this application.
 ```
-pip install > requirements.txt
+$ sudo -H pip install flask
+$ sudo -H pip install sqlalchemy
+$ sudo -H pip install flask-wtf
 ```
 Create the models
 ```
@@ -104,8 +101,8 @@ Create the models
 Lastly you need to setup the final things that are needed.
 ```
 /var/www/app_tracker/app $ cd static
-/var/www/app_tracker/app/static $ npm install bootstrap
-/var/www/app_tracker/app/static $ npm install jquery
+/var/www/app_tracker/app/static $ sudo npm install bootstrap
+/var/www/app_tracker/app/static $ sudo npm install jquery
 ```
 
 Everything **should** be configured to run site. Connect to it on your WWW client:

@@ -29,9 +29,9 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if 'username' in session %}
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="{{url_for('logout')}}">Logout</a></li>
             {% else %}
-            <li><a href="/login">Login</a></li>
+            <li><a href="{{url_for('login')}}">Login</a></li>
             {% endif %}
 
           </ul>
