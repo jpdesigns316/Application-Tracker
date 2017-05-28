@@ -1,7 +1,7 @@
 # Application tracker
 Application Tracker is an online database application to keep track of application that
 you have applied to. There also is a suggestion in which someone could suggest a place
-to apply at under the 'Suggestions' tab.
+to apply at under the 'Suggestions' tab. To add applications you will need to log in.
 
 # Installation
 
