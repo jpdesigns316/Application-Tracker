@@ -1,8 +1,8 @@
 from flask import Flask
 from sqlalchemy import Column, ForeignKey, Integer, String, Text,  \
-    UniqueConstraint, Date
+    UniqueConstraint, Date, func
 from sqlalchemy.ext.declarative import declarative_base
-
+import os
 from sqlalchemy import create_engine
 
 app = Flask(__name__)
@@ -17,7 +17,7 @@ class Application(Base):
 
     id = Column(Integer, primary_key=True, nullable=False)
     company_name = Column(String)
-    date_apply = Column(Date)
+    date_apply = Column(Date, default=func.now())
     position = Column(String)
     job_type = Column(String)
     location = Column(String)
@@ -82,6 +82,10 @@ class Suggestions(Base):
         }
 
 
-engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+db_name = os.path.join(BASE_DIR, FILENAME + '.db')
+if os.path.exists((db_name):
+    os.remove(db_name)
+
+engine=create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 
 Base.metadata.create_all(engine)

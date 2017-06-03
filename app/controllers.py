@@ -1,5 +1,5 @@
 from flask import Flask
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, desc
 from sqlalchemy.orm import sessionmaker
 from models import *
 
@@ -21,7 +21,7 @@ session = DBSession()
 
 
 def get_applications():
-    return session.query(Application).all()
+    return session.query(Application).order_by(desc(Application.date_apply)).all()
 
 
 def get_application(id):

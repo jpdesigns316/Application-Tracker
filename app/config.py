@@ -18,6 +18,8 @@ IP_ADDRESS = '0.0.0.0'
 PORT = 5000
 SECRET_KEY = 'rF&UM39t6Rn2S6422776H9e3!*5D62*K'
 APPLICATION_NAME = "Udacity Application Tracker"
+SQLALCHEMY_MIGRATE_REPO = os.path.join(BASE_DIR, 'db_repository')
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 # Statement for enabling the development environment
 DEBUG = True
 ADMIN = frozenset(["admin"])
@@ -26,5 +28,5 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + \
 
 # PostgreSQL setup
 # SQLALCHEMY_DATABASE_URI = 'postgresql://' + \
-#     SQLUSER + ":" + SQLPASSWORD + '@' + HOST + \
-#     '/' + FILENAME
+#    SQLUSER + ":" + SQLPASSWORD + '@' + HOST + \
+#    '/' + FILENAME
